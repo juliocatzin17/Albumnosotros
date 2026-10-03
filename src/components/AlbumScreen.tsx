@@ -394,13 +394,15 @@ function renderInsideBlank(page: MemoryPage, side: 'left' | 'right') {
     <div className={`w-full h-full paper-texture paper-grain botanical-corner-tl botanical-corner-br ${shadowClass} ${roundedClass} p-6 sm:p-8 md:p-9 relative`}>
       <div className="h-full w-full flex flex-col items-center justify-between text-center">
         {/* Heading */}
-        <p className="font-serif-display text-stone-500 italic text-xl md:text-2xl px-2">
-          {page.title || 'Guardemos nuestra historia para siempre.'}
-        </p>
-        <div className="w-16 h-[1px] bg-stone-400/60 -mt-2"></div>
+        <div className="flex-1 flex flex-col items-center justify-center gap-3">
+          <p className="font-serif-display text-stone-500 italic text-xl md:text-2xl px-2">
+            {page.title || 'Guardemos nuestra historia para siempre.'}
+          </p>
+          <div className="w-16 h-[1px] bg-stone-400/60"></div>
+        </div>
 
         {/* Greeting */}
-        <p className="font-handwriting text-2xl md:text-3xl text-stone-700 -mt-2">
+        <p className="font-handwriting text-2xl md:text-3xl text-stone-700">
           {greeting}
         </p>
 
@@ -435,10 +437,6 @@ function renderAddChapter(page: MemoryPage, side: 'left' | 'right', onNavigateTo
       <div className="w-16 h-16 rounded-full bg-[#f1eee7] border border-[#c2c7cc] flex items-center justify-center text-[#446274] mb-6 shadow-inner">
         <Sparkles className="w-8 h-8 text-[#735c00]" />
       </div>
-
-      <p className="font-handwriting text-2xl md:text-3xl text-stone-700 italic mb-6">
-        {page.handwrittenNote || 'Guardemos un recuerdo más <3'}
-      </p>
 
       <p className="font-sans-ui text-sm text-stone-600 max-w-xs mb-8">
         Crea una nueva página con fotos personalizadas, notas manuscritas y recuerdos libres.
