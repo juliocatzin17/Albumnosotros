@@ -302,7 +302,7 @@ function renderPageContent(
     return renderInsideBlank(page, side);
   }
   if (page.type === 'add_chapter') {
-    return renderAddChapter(page, side, onNavigateToEditor);
+    return renderAddChapter(side, onNavigateToEditor);
   }
   if (page.type === 'photo_caption') {
     return renderPhotoCaptionPage(page, side, onEditPage);
@@ -429,7 +429,7 @@ function renderInsideBlank(page: MemoryPage, side: 'left' | 'right') {
   );
 }
 
-function renderAddChapter(page: MemoryPage, side: 'left' | 'right', onNavigateToEditor: () => void) {
+function renderAddChapter(side: 'left' | 'right', onNavigateToEditor: () => void) {
   const shadowClass = side === 'left' ? 'page-shadow-left' : 'page-shadow-right';
   const roundedClass = side === 'left' ? 'rounded-l-lg' : 'rounded-r-lg';
   return (
