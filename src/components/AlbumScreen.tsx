@@ -439,7 +439,7 @@ function renderAddChapter(side: 'left' | 'right', onNavigateToEditor: () => void
       </div>
 
       <p className="font-sans-ui text-sm text-stone-600 max-w-xs mb-8">
-        Crea una nueva página con fotos personalizadas, notas manuscritas y recuerdos libres.
+        Crea un nuevo recuerdo para añadir a nuestro álbum. Puedes subir fotos, escribir historias y añadir canciones que nos traiga recuerdos.
       </p>
 
       <button
