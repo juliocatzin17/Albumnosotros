@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, type Variants } from 'motion/react';
 import { ScreenType, MemoryPage, ScrapbookItem } from './types';
 import { INITIAL_PAGES } from './data/initialMemories';
 import { AlbumScreen } from './components/AlbumScreen';
@@ -235,7 +235,8 @@ export default function App() {
   };
 
   // Motion variants for slide_up & push_back
-  const screenVariants = {
+  const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+  const screenVariants: Variants = {
     initial: (direction: 'slide_up' | 'push_back') => {
       if (direction === 'slide_up') {
         return { y: '100%', opacity: 0.8, scale: 0.98 };
@@ -249,23 +250,21 @@ export default function App() {
       scale: 1,
       transition: {
         duration: 0.4,
-        ease: [0.22, 1, 0.36, 1],
+        ease: EASE,
       },
     },
     exit: (direction: 'slide_up' | 'push_back') => {
       if (direction === 'slide_up') {
-        // Album going back / scaling down
         return {
           scale: 0.94,
           opacity: 0.6,
-          transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+          transition: { duration: 0.35, ease: EASE },
         };
       } else {
-        // Editor sliding down / popping back
         return {
           y: '100%',
           opacity: 0.8,
-          transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+          transition: { duration: 0.35, ease: EASE },
         };
       }
     },
