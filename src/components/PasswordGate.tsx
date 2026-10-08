@@ -1,4 +1,4 @@
-import { useState, useRef, type FormEvent } from 'react';
+import React, { useState, useRef, type FormEvent } from 'react';
 import { motion } from 'motion/react';
 import { Lock, KeyRound, Eye, EyeOff } from 'lucide-react';
 
