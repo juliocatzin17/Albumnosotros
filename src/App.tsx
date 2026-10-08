@@ -4,6 +4,7 @@ import { ScreenType, MemoryPage, ScrapbookItem } from './types';
 import { INITIAL_PAGES } from './data/initialMemories';
 import { AlbumScreen } from './components/AlbumScreen';
 import { EditorScreen } from './components/EditorScreen';
+import { PasswordGate } from './components/PasswordGate';
 import { fetchPages, createPage, savePageWithItems, updatePageWithItems } from './lib/memoriesService';
 import type { PageWithItems } from './lib/memoriesService';
 
@@ -100,6 +101,7 @@ async function persistEditToSupabase(pageId: string, page: MemoryPage) {
 }
 
 export default function App() {
+  const [unlocked, setUnlocked] = useState(false);
   const [currentScreen, setCurrentScreen] = useState<ScreenType>('album');
   const [transitionDirection, setTransitionDirection] = useState<'slide_up' | 'push_back'>('slide_up');
   const [pages, setPages] = useState<MemoryPage[]>(INITIAL_PAGES);
@@ -109,6 +111,8 @@ export default function App() {
   const [syncStatus, setSyncStatus] = useState<SyncStatus>('loading');
 
   useEffect(() => {
+    if (!unlocked) return;
+
     async function loadPages() {
       try {
         const { data, error } = await fetchPages(DEFAULT_USER_ID);
@@ -139,7 +143,7 @@ export default function App() {
     }
 
     loadPages();
-  }, []);
+  }, [unlocked]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -269,6 +273,10 @@ export default function App() {
       }
     },
   };
+
+  if (!unlocked) {
+    return <PasswordGate onUnlock={() => setUnlocked(true)} />;
+  }
 
   return (
     <div className="w-full min-h-screen bg-[#4a3b2c] overflow-hidden relative font-serif">
